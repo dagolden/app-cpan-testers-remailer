@@ -11,9 +11,15 @@ WriteMakefile
                          ],
           'VERSION_FROM' => 'lib/App/CPAN/Testers/Remailer.pm',
           'PREREQ_PM' => {
-                           'Test::More' => '0.47',
+                           'Getopt::Long' => '2.37',
                            'POE::Component::Client::NNTP::Tail' => '0.01',
-                           'POE::Component::Client::SMTP' => '0.2'
+                           'Test::More' => '0.47',
+                           'Net::DNS' => '0.63',
+                           'POE::Component::Client::SMTP' => '0.2',
+                           'Email::Simple' => '2.003',
+                           'Safe' => '2.1',
+                           'LWP::Simple' => '1.41',
+                           'Email::Address' => '1.888'
                          }
         )
 ;

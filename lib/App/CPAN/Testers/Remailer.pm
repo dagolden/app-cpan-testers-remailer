@@ -17,6 +17,7 @@ use Email::Simple;
 use Email::Address;
 use File::Basename qw/basename/;
 use LWP::Simple;
+use Net::DNS qw/mx/;
 use Getopt::Long;
 use POE qw( 
   Component::Client::NNTP::Tail
@@ -45,7 +46,7 @@ sub run {
 
   my ($author,@grades,$help);
   my $mirror      = "http://cpan.pair.com/";
-  my $smtp        = "mx.perl.org" ; # maybe change to your ISP's server
+  my $smtp        = [ mx('perl.org') ]->[0]->exchange; # maybe change to your ISP's server
   my $checksum_path;
 
   GetOptions( 
@@ -199,7 +200,11 @@ sub smtp_err {
     warn "$0: Timeout sending report $article_id\n";
   }
   elsif ( $errors->{Configure} ) {
-    die "$0: Could not authenticate to SMTP server\n";
+    warn "$0: Could not authenticate to SMTP server\n";
+  }
+  elsif ( $errors->{'POE::Wheel::SocketFactory'} ) {
+    my ($operation, $errnum, $errstr) = @{ $errors->{'POE::Wheel::SocketFactory'} };
+    warn "$0: Error during '$operation' for $article_id\: $errstr\n";
   }
   else {
     warn "$0: Internal error sending report $article_id\n"

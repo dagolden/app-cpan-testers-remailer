@@ -23,6 +23,7 @@ my $build = $class->new(
         'Email::Simple' => 2.003,
         'Getopt::Long' => 2.37, 
         'LWP::Simple' => 1.41,
+        'Net::DNS' => 0.63,
         'POE::Component::Client::NNTP::Tail' => 0.01,
         'POE::Component::Client::SMTP' => 0.20,
         'Safe' => 2.10, 
