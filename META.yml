@@ -1,0 +1,28 @@
+---
+name: App-CPAN-Testers-Remailer
+version: 0.01
+author:
+  - 'David Golden <dagolden@cpan.org>'
+abstract: monitor CPAN Testers and remail reports to an author
+license: apache
+resources:
+  license: http://apache.org/licenses/LICENSE-2.0
+requires:
+  POE::Component::Client::NNTP::Tail: 0.01
+  POE::Component::Client::SMTP: 0.2
+  perl: 5.006
+build_requires:
+  Test::More: 0.47
+provides:
+  App::CPAN::Testers::Remailer:
+    file: lib/App/CPAN/Testers/Remailer.pm
+    version: 0.01
+generated_by: Module::Build version 0.280801
+meta-spec:
+  url: http://module-build.sourceforge.net/META-spec-v1.2.html
+  version: 1.2
+no_index:
+  directory:
+    - examples
+    - inc
+    - t
